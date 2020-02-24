@@ -27,10 +27,10 @@
 <hunch-tabs>
   <div slot="tabs" class="tabs">
     <div>tab 1</div>
-    <div>tab 2</div>
+    <div>tab 2tab tab tab tab tab tab tab tab tab 222222222</div>
   </div>
   <div slot="panels" class="panels">
-    <div>panel1</div>
+    <div>panel1panel1111111111111111111111111111111111111111111111111111111111111111111</div>
     <div>panel2</div>
   </div>
 </hunch-tabs>
