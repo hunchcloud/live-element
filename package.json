@@ -1,8 +1,8 @@
 {
   "name": "@hunchcloud/live-element",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A playground for live editing custom elements",
-  "main": "dist/index.js",
+  "main": "dist/live-element.js",
   "files": [
     "dist"
   ],

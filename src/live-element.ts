@@ -37,7 +37,9 @@ class LiveElement extends HTMLElement {
   onChange = () => {
     if (this.editor) {
       this.innerHTML = this.editor.value;
-      this.editor.focus();
+      setTimeout(() => {
+        this.editor?.focus();
+      });
     }
   };
 }
