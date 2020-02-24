@@ -12,7 +12,7 @@ template.innerHTML = `
 `;
 
 class LiveElement extends HTMLElement {
-  editor: HTMLElement | null = null;
+  editor: HTMLTextAreaElement | null = null;
   preview: HTMLElement | null = null;
 
   constructor() {
@@ -23,18 +23,22 @@ class LiveElement extends HTMLElement {
     this.editor = shadow.querySelector("textarea");
     this.preview = shadow.querySelector("slot");
 
-    this.editor.addEventListener("input", this.onChange);
+    this.editor?.addEventListener("input", this.onChange);
   }
 
   connectedCallback() {
-    const innerHTML = this.querySelector("template").innerHTML;
-    this.editor.value = innerHTML;
-    this.innerHTML = innerHTML;
+    const innerHTML = this.querySelector("template")?.innerHTML;
+    if (this.editor && innerHTML) {
+      this.editor.value = innerHTML;
+      this.innerHTML = innerHTML;
+    }
   }
 
-  onChange = (e: HTMLInputEvent) => {
-    this.innerHTML = e.target.value;
-    e.target.focus();
+  onChange = () => {
+    if (this.editor) {
+      this.innerHTML = this.editor.value;
+      this.editor.focus();
+    }
   };
 }
 

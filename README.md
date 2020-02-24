@@ -1,6 +1,6 @@
 # `<live-element>`
 
-Like react-live, but for web components (custom elements).
+A playground for live editing custom elements. Like react-live, but for web components (custom elements).
 
 ## Development
 

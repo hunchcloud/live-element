@@ -1,5 +1,32 @@
 {
   "name": "@hunchcloud/live-element",
+  "version": "0.1.0",
+  "description": "A playground for live editing custom elements",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunchcloud/live-element.git"
+  },
+  "keywords": [
+    "custom elements",
+    "web components",
+    "live editing",
+    "playground"
+  ],
+  "author": "Ping Chen",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/hunchcloud/live-element/issues"
+  },
+  "homepage": "https://github.com/hunchcloud/live-element#readme",
+  "scripts": {
+    "build": "tsc -d",
+    "release": "rm -rf dist && npm run build && npm publish --access public",
+    "start": "parcel example/demo.md"
+  },
   "devDependencies": {
     "marked": "^0.8.0",
     "typescript": "^3.8.2"
