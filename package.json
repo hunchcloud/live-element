@@ -1,0 +1,7 @@
+{
+  "name": "@hunchcloud/live-element",
+  "devDependencies": {
+    "marked": "^0.8.0",
+    "typescript": "^3.8.2"
+  }
+}
