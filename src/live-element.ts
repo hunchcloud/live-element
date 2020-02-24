@@ -1,4 +1,6 @@
-import Prism from "prismjs";
+import * as PrismPkg from "prismjs";
+
+const Prism = window.Prism || PrismPkg;
 
 const template = document.createElement("template");
 
@@ -90,12 +92,14 @@ class LiveElement extends HTMLElement {
     }
   }
 
-  renderHighlight(innerHTML) {
-    this.highlight?.innerHTML = Prism.highlight(
-      innerHTML,
-      Prism.languages.html,
-      "html"
-    );
+  renderHighlight(innerHTML: string) {
+    if (this.highlight) {
+      this.highlight.innerHTML = Prism.highlight(
+        innerHTML,
+        Prism.languages.html,
+        "html"
+      );
+    }
   }
 
   onChange = () => {

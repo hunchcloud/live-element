@@ -7,11 +7,12 @@ A custom element to live edit other custom elements. Like react-live, but for we
 ## Usage
 
 Install by
+
 ```
 yarn add @hunchcloud/live-element
 ```
 
-Then
+Insert the following HTML
 
 ```html
 <live-element>
@@ -20,6 +21,8 @@ Then
 </template>
 <live-element>
 ```
+
+Then you will get a playground to live edit `<your-custom-element>`.
 
 Notice the `<template>` wrapper is required to prevent `<your-custom-element>` rendering before being passed to `<live-element>`.
 
