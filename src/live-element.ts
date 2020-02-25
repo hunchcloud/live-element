@@ -13,6 +13,10 @@ template.innerHTML = `
   grid-template-columns: 1fr 1fr;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #editor-wrap {
   position: relative;
   font-family: monospace;
