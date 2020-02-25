@@ -23,18 +23,18 @@
 </style>
 
 <live-element>
-<template>
-<hunch-tabs>
-  <div slot="tabs" class="tabs">
-    <div>tab 1</div>
-    <div>tab 2tab tab tab tab tab tab tab tab tab 222222222</div>
-  </div>
-  <div slot="panels" class="panels">
-    <div>panel1panel1111111111111111111111111111111111111111111111111111111111111111111</div>
-    <div>panel2</div>
-  </div>
-</hunch-tabs>
-</template>
+  <template>
+    <hunch-tabs>
+      <div slot="tabs" class="tabs">
+        <div>tab 1</div>
+        <div>tab 2tab tab tab tab tab tab tab tab tab 222222222</div>
+      </div>
+      <div slot="panels" class="panels">
+        <div>panel1panel1111111111111111111111111111111111111111111111111111111111111111111</div>
+        <div>panel2</div>
+      </div>
+    </hunch-tabs>
+  </template>
 </live-element>
 
 <script src="https://unpkg.com/@hunchcloud/elements@0.2.1/dist/hunch-tabs.js"></script>

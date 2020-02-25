@@ -16,9 +16,9 @@ Insert the following HTML
 
 ```html
 <live-element>
-<template>
-  <your-custom-element></your-custom-element>
-</template>
+  <template>
+    <your-custom-element></your-custom-element>
+  </template>
 <live-element>
 ```
 

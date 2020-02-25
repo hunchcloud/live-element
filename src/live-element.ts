@@ -88,13 +88,45 @@ class LiveElement extends HTMLElement {
   }
 
   connectedCallback() {
-    const innerHTML = this.querySelector("template")?.innerHTML.trim();
-    if (this.editor && innerHTML) {
-      this.editor.value = innerHTML;
-      this.innerHTML = innerHTML;
-      this.renderHighlight(innerHTML);
+    const template = this.querySelector("template");
+    if (template) {
+      const innerHTML = this.unIndent(template.innerHTML);
+      if (this.editor && innerHTML) {
+        this.editor.value = innerHTML;
+        this.innerHTML = innerHTML;
+        this.renderHighlight(innerHTML);
+      }
     }
   }
+
+  /**
+   * Get the indentation level (space count: `n`) of the last line (assumed as
+   * the closing tag), remove `n` leading spaces of each line.
+   */
+  unIndent(str: string) {
+    const lines = str.trim().split("\n");
+    const length = lines.length;
+    if (length) {
+      const index = lines[length - 1].search(/[^\s]/);
+      for (let i = 0; i < length; i++) {
+        if (lines[i].slice(0, index).trim() === "") {
+          lines[i] = lines[i].slice(index);
+        }
+      }
+    }
+    return lines.join("\n");
+  }
+
+  onChange = () => {
+    if (this.editor) {
+      const innerHTML = this.editor.value;
+      this.innerHTML = innerHTML;
+      this.renderHighlight(innerHTML);
+      setTimeout(() => {
+        this.editor?.focus();
+      });
+    }
+  };
 
   renderHighlight(innerHTML: string) {
     if (this.highlight) {
@@ -105,17 +137,6 @@ class LiveElement extends HTMLElement {
       );
     }
   }
-
-  onChange = () => {
-    if (this.editor) {
-      const innerHTML = this.editor.value.trim();
-      this.innerHTML = innerHTML;
-      this.renderHighlight(innerHTML);
-      setTimeout(() => {
-        this.editor?.focus();
-      });
-    }
-  };
 }
 
 customElements.define("live-element", LiveElement);
