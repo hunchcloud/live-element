@@ -4,6 +4,8 @@ A custom element to live edit other custom elements. Like react-live, but for we
 
 💫️ [Demos](https://live-element.glitch.me/)
 
+![demo.gif](demo.gif)
+
 ## Usage
 
 Install by
