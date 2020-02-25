@@ -64,7 +64,7 @@ template.innerHTML = `
 </style>
 
 <div id="editor-wrap">
-  <div style="position: relative;">
+  <div style="position: relative; min-height: 100%;">
     <textarea id="editor" spellcheck="false"></textarea>
     <pre id="highlight"></pre>
   </div>
@@ -131,7 +131,9 @@ class LiveElement extends HTMLElement {
   renderHighlight(innerHTML: string) {
     if (this.highlight) {
       this.highlight.innerHTML = Prism.highlight(
-        innerHTML,
+        // Append a blank character to prevent misalignment when the last line
+        // is empty.
+        innerHTML + " ",
         Prism.languages.html,
         "html"
       );
