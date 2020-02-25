@@ -1,0 +1,37 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:latest
+
+version: 2.1
+jobs:
+  release:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - deps-{{ checksum "package.json" }}
+
+      - run:
+          command: |
+            mv .circleci/.npmrc .
+            yarn
+            npm run release
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: deps-{{ checksum "package.json" }}
+
+workflows:
+  main:
+    jobs:
+      - release:
+          context: npm-release
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
