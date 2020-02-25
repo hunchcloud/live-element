@@ -65,7 +65,7 @@ template.innerHTML = `
 
 <div id="editor-wrap">
   <div style="position: relative;">
-    <textarea id="editor"></textarea>
+    <textarea id="editor" spellcheck="false"></textarea>
     <pre id="highlight"></pre>
   </div>
 </div>
