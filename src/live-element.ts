@@ -2,11 +2,10 @@ import * as PrismPkg from "prismjs";
 
 const Prism = window.Prism || PrismPkg;
 
-const template = document.createElement("template");
+const mkTemplate = (userStyle: string | undefined) => {
+  const template = document.createElement("template");
 
-template.innerHTML = `
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css" />
-
+  template.innerHTML = `
 <style>
 :host {
   display: grid;
@@ -20,9 +19,9 @@ template.innerHTML = `
 #editor-wrap {
   position: relative;
   font-family: monospace;
-  border: 1px solid gray;
   height: 100%;
   overflow: auto;
+  background: #f5f2f0;
 }
 
 #editor {
@@ -36,6 +35,7 @@ template.innerHTML = `
   border: none;
   resize: none;
   overflow: hidden;
+  background: none;
   font: inherit;
   padding: 10px;
   white-space: pre-wrap;
@@ -50,6 +50,8 @@ template.innerHTML = `
   position: relative;
   pointer-events: none;
   margin: 0;
+  min-height: 100%;
+  background: none;
   font: inherit;
   padding: 10px;
   white-space: pre-wrap;
@@ -63,6 +65,9 @@ template.innerHTML = `
 }
 </style>
 
+${userStyle ||
+  '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css" />'}
+
 <div id="editor-wrap">
   <div style="position: relative; min-height: 100%;">
     <textarea id="editor" spellcheck="false"></textarea>
@@ -72,25 +77,32 @@ template.innerHTML = `
 <slot></slot>
 `;
 
+  return template;
+};
+
 class LiveElement extends HTMLElement {
   editor: HTMLTextAreaElement | null = null;
   highlight: HTMLElement | null = null;
 
-  constructor() {
-    super();
+  connectedCallback() {
+    let userStyle;
+    const styleTemplateId = this.getAttribute("style-template-id");
+    if (styleTemplateId) {
+      const styleTemplate = document.getElementById(styleTemplateId);
+      userStyle = styleTemplate?.innerHTML;
+    }
+
+    const template = mkTemplate(userStyle);
     const shadow = this.attachShadow({ mode: "open" });
     shadow.appendChild(template.content.cloneNode(true));
 
     this.editor = shadow.querySelector("#editor");
+    this.editor?.addEventListener("input", this.onChange);
     this.highlight = shadow.querySelector("#highlight");
 
-    this.editor?.addEventListener("input", this.onChange);
-  }
-
-  connectedCallback() {
-    const template = this.querySelector("template");
-    if (template) {
-      const innerHTML = this.unIndent(template.innerHTML);
+    const contentTemplate = this.querySelector("template");
+    if (contentTemplate) {
+      const innerHTML = this.unIndent(contentTemplate.innerHTML);
       if (this.editor && innerHTML) {
         this.editor.value = innerHTML;
         this.innerHTML = innerHTML;
