@@ -22,11 +22,11 @@ const mkTemplate = (userStyle: string | undefined) => {
   height: 100%;
   overflow: auto;
   background: #f5f2f0;
+  caret-color: black;
 }
 
 #editor {
   color: transparent;
-  caret-color: black;
   position: absolute;
   top: 0;
   left: 0;
@@ -81,8 +81,8 @@ ${userStyle ||
 };
 
 class LiveElement extends HTMLElement {
-  editor: HTMLTextAreaElement | null = null;
-  highlight: HTMLElement | null = null;
+  $editor: HTMLTextAreaElement | null = null;
+  $highlight: HTMLElement | null = null;
 
   connectedCallback() {
     let userStyle;
@@ -96,15 +96,15 @@ class LiveElement extends HTMLElement {
     const shadow = this.attachShadow({ mode: "open" });
     shadow.appendChild(template.content.cloneNode(true));
 
-    this.editor = shadow.querySelector("#editor");
-    this.editor?.addEventListener("input", this.onChange);
-    this.highlight = shadow.querySelector("#highlight");
+    this.$editor = shadow.querySelector("#editor");
+    this.$editor?.addEventListener("input", this.onChange);
+    this.$highlight = shadow.querySelector("#highlight");
 
-    const contentTemplate = this.querySelector("template");
-    if (contentTemplate) {
-      const innerHTML = this.unIndent(contentTemplate.innerHTML);
-      if (this.editor && innerHTML) {
-        this.editor.value = innerHTML;
+    const content = this.querySelector("textarea");
+    if (content) {
+      const innerHTML = this.unIndent(content.value);
+      if (this.$editor && innerHTML) {
+        this.$editor.value = innerHTML;
         this.innerHTML = innerHTML;
         this.renderHighlight(innerHTML);
       }
@@ -130,19 +130,19 @@ class LiveElement extends HTMLElement {
   }
 
   onChange = () => {
-    if (this.editor) {
-      const innerHTML = this.editor.value;
+    if (this.$editor) {
+      const innerHTML = this.$editor.value;
       this.innerHTML = innerHTML;
       this.renderHighlight(innerHTML);
       setTimeout(() => {
-        this.editor?.focus();
+        this.$editor?.focus();
       });
     }
   };
 
   renderHighlight(innerHTML: string) {
-    if (this.highlight) {
-      this.highlight.innerHTML = Prism.highlight(
+    if (this.$highlight) {
+      this.$highlight.innerHTML = Prism.highlight(
         // Append a blank character to prevent misalignment when the last line
         // is empty.
         innerHTML + " ",

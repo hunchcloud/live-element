@@ -18,15 +18,15 @@ Insert the following HTML
 
 ```html
 <live-element>
-  <template>
+  <textarea>
     <your-custom-element></your-custom-element>
-  </template>
+  </textarea>
 <live-element>
 ```
 
 Then you will get a playground to live edit `<your-custom-element>`.
 
-Notice the `<template>` wrapper is required to prevent `<your-custom-element>` rendering before being passed to `<live-element>`.
+Notice the `<textarea>` wrapper is required to prevent `<your-custom-element>` rendering before being passed to `<live-element>`.
 
 ## Customize editor styles
 
@@ -47,9 +47,9 @@ Use `style-template-id` to pass in customized styles.
 </template>
 
 <live-element style-template-id="prism-solarized">
-  <template>
+  <textarea>
     <your-custom-element></your-custom-element>
-  </template>
+  </textarea>
 <live-element>
 ```
 

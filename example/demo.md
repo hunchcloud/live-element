@@ -23,7 +23,7 @@
 </style>
 
 <live-element>
-  <template>
+  <textarea>
     <hunch-tabs>
       <div slot="tabs" class="tabs">
         <div>tab 1</div>
@@ -34,7 +34,7 @@
         <div>panel2</div>
       </div>
     </hunch-tabs>
-  </template>
+  </textarea>
 </live-element>
 
 <template id="prism-solarized">
@@ -42,6 +42,7 @@
   <style>
     #live-editor {
       color: #657b83;
+      caret-color: white;
       background: #073642;
     }
     ::slotted(*) {
@@ -51,7 +52,7 @@
 </template>
 
 <live-element style-template-id="prism-solarized" style="margin-top: 3rem;">
-  <template>
+  <textarea>
     <hunch-tabs>
       <div slot="tabs" class="tabs">
         <div>tab 1</div>
@@ -62,7 +63,7 @@
         <div>panel2</div>
       </div>
     </hunch-tabs>
-  </template>
+  </textarea>
 </live-element>
 
 <script src="https://unpkg.com/@hunchcloud/elements@0.2.1/dist/hunch-tabs.js"></script>
