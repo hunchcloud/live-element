@@ -100,6 +100,17 @@ class LiveElement extends HTMLElement {
     this.$editor?.addEventListener("input", this.onChange);
     this.$highlight = shadow.querySelector("#highlight");
 
+    /**
+     * Previously we used <template>, but all `&` will become `&amp;`, so we
+     * changed to use <textarea>. One downside of <textarea> is having to escape
+     * inner <textarea>.
+     *
+     * <live-element>
+     *   <textarea>
+     *     Inner &lt;textarea>&lt;/textarea>
+     *   </textarea>
+     * </live-element>
+     */
     const content = this.querySelector("textarea");
     if (content) {
       const innerHTML = this.unIndent(content.value);
