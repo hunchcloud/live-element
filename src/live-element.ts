@@ -16,7 +16,7 @@ const mkTemplate = (userStyle: string | undefined) => {
   box-sizing: border-box;
 }
 
-#editor-wrap {
+#live-editor {
   position: relative;
   font-family: monospace;
   height: 100%;
@@ -68,7 +68,7 @@ const mkTemplate = (userStyle: string | undefined) => {
 ${userStyle ||
   '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css" />'}
 
-<div id="editor-wrap">
+<div id="live-editor">
   <div style="position: relative; min-height: 100%;">
     <textarea id="editor" spellcheck="false"></textarea>
     <pre id="highlight"></pre>

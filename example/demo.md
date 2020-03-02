@@ -40,7 +40,7 @@
 <template id="prism-solarized">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-solarizedlight.min.css" />
   <style>
-    #editor-wrap {
+    #live-editor {
       color: #657b83;
       background: #073642;
     }
