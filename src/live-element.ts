@@ -1,72 +1,18 @@
 import * as PrismPkg from "prismjs";
-
 const Prism = window.Prism || PrismPkg;
+
+let css = "";
+if (process.env.NODE_ENV === "production") {
+  css = require("./live-element.css.ts");
+} else {
+  css = require("fs").readFileSync("./src/live-element.css", "utf8");
+}
 
 const mkTemplate = (userStyle: string | undefined) => {
   const template = document.createElement("template");
 
   template.innerHTML = `
-<style>
-:host {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-#live-editor {
-  position: relative;
-  font-family: monospace;
-  height: 100%;
-  overflow: auto;
-  color: #657b83;
-  background: #fdf6e3;
-  caret-color: black;
-  font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
-  line-height: 1.5;
-}
-
-#editor {
-  color: transparent;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  resize: none;
-  overflow: hidden;
-  background: none;
-  font: inherit;
-  padding: 10px;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-#editor:focus {
-  outline: none;
-}
-
-#highlight {
-  position: relative;
-  pointer-events: none;
-  margin: 0;
-  min-height: 100%;
-  background: none;
-  font: inherit;
-  padding: 10px;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-::slotted(*) {
-  min-width: 0;
-  min-height: 0;
-  overflow: auto;
-}
-</style>
+<style>${css}</style>
 
 ${userStyle ||
   '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-solarizedlight.min.css" />'}
