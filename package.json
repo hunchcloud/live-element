@@ -1,6 +1,6 @@
 {
   "name": "@hunchcloud/live-element",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A custom element to live edit other custom elements",
   "main": "dist/live-element.js",
   "files": [
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/hunchcloud/live-element#readme",
   "scripts": {
-    "build": "node scripts/build-css.js && NODE_ENV=production tsc -d",
+    "build": "node scripts/build-css.js && tsc -d",
+    "build:css": "node scripts/build-css.js",
     "release": "rm -rf dist && npm run build && npm publish --access public",
     "start": "parcel example/demo.md"
   },

@@ -2,4 +2,4 @@
 dist
 node_modules
 
-*.css.ts
+*-css.ts

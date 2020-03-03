@@ -1,12 +1,7 @@
 import * as PrismPkg from "prismjs";
 const Prism = window.Prism || PrismPkg;
 
-let css = "";
-if (process.env.NODE_ENV === "production") {
-  css = require("./live-element.css.ts");
-} else {
-  css = require("fs").readFileSync("./src/live-element.css", "utf8");
-}
+import css from "./live-element-css";
 
 const mkTemplate = (userStyle: string | undefined) => {
   const template = document.createElement("template");
