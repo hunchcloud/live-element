@@ -1,5 +1,7 @@
 # `<live-element>`
 
+[![npm](https://img.shields.io/npm/v/@hunchcloud/live-element.svg)](https://www.npmjs.com/package/@hunchcloud/live-element)
+
 A custom element to live edit other custom elements. Like react-live, but for web components (custom elements).
 
 💫️ [Demos](https://live-element.glitch.me/)
