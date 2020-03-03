@@ -1,8 +1,8 @@
 <style>
   live-element {
-    width: 50rem;
+    width: 60rem;
     margin: 0 auto;
-    height: 12rem;
+    height: 16rem;
     grid-gap: 1rem;
   }
   .tabs {

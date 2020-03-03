@@ -21,8 +21,11 @@ const mkTemplate = (userStyle: string | undefined) => {
   font-family: monospace;
   height: 100%;
   overflow: auto;
-  background: #f5f2f0;
+  color: #657b83;
+  background: #fdf6e3;
   caret-color: black;
+  font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
+  line-height: 1.5;
 }
 
 #editor {
@@ -66,7 +69,7 @@ const mkTemplate = (userStyle: string | undefined) => {
 </style>
 
 ${userStyle ||
-  '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css" />'}
+  '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-solarizedlight.min.css" />'}
 
 <div id="live-editor">
   <div style="position: relative; min-height: 100%;">
