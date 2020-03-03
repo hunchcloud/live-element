@@ -58,5 +58,5 @@ Use `style-template-id` to pass in customized styles.
 ## Development
 
 ```
-parcel example/demo.md
+yarn start
 ```
